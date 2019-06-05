@@ -9,12 +9,12 @@ steps:
 - task: AzureCLI@1
   displayName: 'Install the CLI'
   inputs:
-    azureSubscription: 'build-demo'
+    azureSubscription: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
     scriptLocation: inlineScript
     inlineScript: 'az extension add -n azure-cli-ml'
 
 - task: AzureCLI@1
-  displayName: 'Attach folder to workspace'
+  displayName: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
   inputs:
     azureSubscription: 'build-demo'
     scriptLocation: inlineScript
@@ -30,27 +30,27 @@ steps:
 - task: AzureCLI@1
   displayName: 'Submit script run'
   inputs:
-    azureSubscription: 'build-demo'
+    azureSubscription: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
     scriptLocation: inlineScript
     inlineScript: 'az ml run submit-script -c sklearn -e test -d myenv.yml train.py'
 
 - task: AzureCLI@1
   displayName: 'Register model'
   inputs:
-    azureSubscription: 'build-demo'
+    azureSubscription: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
     scriptLocation: inlineScript
     inlineScript: 'az ml model register -n mymodel -p sklearn_regression_model.pkl -t model.json'
 
 - task: AzureCLI@1
   displayName: 'Deploy model'
   inputs:
-    azureSubscription: 'build-demo'
+    azureSubscription: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
     scriptLocation: inlineScript
     inlineScript: 'az ml model deploy -n acicicd -f model.json --ic inferenceConfig.yml --dc deploymentConfig.yml --overwrite'
 
 - task: AzureCLI@1
   displayName: 'Delete deployed service'
   inputs:
-    azureSubscription: 'build-demo'
+    azureSubscription: 'Microsoft Azure Internal Consumption (4dc00786-d25c-4fd4-91b3-7dbf5dc442d8)'
     scriptLocation: inlineScript
     inlineScript: 'az ml service delete -n acicicd'
